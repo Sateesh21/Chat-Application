@@ -3,6 +3,9 @@ import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import { createServer } from 'http';
+import authRouter from "./routes/user.routes";
+import cookieParser from "cookie-parser";
+
 
 const app = express();
 const httpServer = createServer(app);
@@ -12,6 +15,9 @@ app.use(cors());
 app.use(helmet());
 app.use(morgan('dev'));
 app.use(express.json());
+app.use(cookieParser());
+
+app.use("/api/auth", authRouter);
 
 // Health check
 app.get('/', (req, res) => {
