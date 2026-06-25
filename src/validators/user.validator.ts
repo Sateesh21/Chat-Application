@@ -16,7 +16,7 @@ export const registerValidator = z.object({
     newPassword: z.string().min(6, 'Password is too short')
  })
 
- export type RegisterInput = z.infer<typeof registerValidator>;
+export type RegisterInput = z.infer<typeof registerValidator>;
 export type LoginInput = z.infer<typeof loginValidator>;
 export type ChangePasswordInput = z.infer<typeof changePasswordValidator>;
 

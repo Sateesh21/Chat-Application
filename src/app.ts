@@ -5,10 +5,12 @@ import helmet from 'helmet';
 import { createServer } from 'http';
 import authRouter from "./routes/user.routes";
 import cookieParser from "cookie-parser";
+import roomRouter from './routes/room.routes';
 
 
 const app = express();
 const httpServer = createServer(app);
+
 
 // Middlewares
 app.use(cors());
@@ -18,6 +20,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
+app.use("/api/rooms", roomRouter);
 
 // Health check
 app.get('/', (req, res) => {

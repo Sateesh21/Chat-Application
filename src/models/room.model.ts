@@ -1,12 +1,13 @@
 import { Document, Schema, model } from "mongoose";
+import {Types} from "mongoose";
 
 type RoomType = "direct" | "group";
 
 export interface roomInterface extends Document {
   name?: string;
-  type: RoomType;
-  members: Schema.Types.ObjectId[];
-  createdBy: Schema.Types.ObjectId;
+  type: "direct" | "group";
+  members: Types.ObjectId[];
+  createdBy: Types.ObjectId;
   createdAt: Date;
 }
 

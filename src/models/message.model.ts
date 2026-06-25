@@ -1,12 +1,12 @@
-import mongoose, {Document, model, Schema} from "mongoose";
+import mongoose, {Document, model, Schema, Types} from "mongoose";
 type MessageType = "text" | "image";
 
 export interface messageInterface extends Document {
-  roomId: Schema.Types.ObjectId;
-  senderId: Schema.Types.ObjectId;
+  roomId: Types.ObjectId;
+  senderId: Types.ObjectId;
   text: string;
   messageType: MessageType;
-  readBy: Schema.Types.ObjectId[];
+  readBy: Types.ObjectId[];
   createdAt: Date;
 }
 

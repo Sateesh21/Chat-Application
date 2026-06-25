@@ -10,7 +10,7 @@ import {
   logoutUser
 } from "../controllers/user.controller";
 import validate from "../middlewares/validate.middleware";
-import {registerValidator, loginValidator, changePasswordValidator} from "../validators/user.validatior";
+import {registerValidator, loginValidator, changePasswordValidator} from "../validators/user.validator";
 import { authMiddleware } from "../middlewares/auth.middleware";
 
 const authRouter = express.Router();
