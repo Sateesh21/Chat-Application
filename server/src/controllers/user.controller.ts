@@ -71,19 +71,22 @@ export const userLogin = async (req: Request, res: Response) => {
 
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: false,
+      sameSite: "lax",
       maxAge: 15 * 60 * 1000,
     });
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: false,
+      sameSite: "lax",
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     return res.status(200).json({
       success: true,
       message: "Login successful",
+      accessToken,
       user: {
         id: findUser._id,
         name: findUser.name,
@@ -265,4 +268,12 @@ export const logoutUser = async (req: Request, res: Response) => {
       message: error instanceof Error ? error.message : "Internal Server Error",
     });
   }
+};
+
+export const getAccessToken = async (req: Request, res: Response) => {
+  const token = req.cookies.accessToken;
+  if (!token) {
+    return res.status(401).json({ success: false, message: "Unauthorized" });
+  }
+  return res.status(200).json({ success: true, accessToken: token });
 };

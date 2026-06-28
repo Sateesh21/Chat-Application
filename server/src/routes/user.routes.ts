@@ -7,7 +7,8 @@ import {
   getUser,
   updateUser,
   deleteUser,
-  logoutUser
+  logoutUser,
+  getAccessToken
 } from "../controllers/user.controller";
 import validate from "../middlewares/validate.middleware";
 import {registerValidator, loginValidator, changePasswordValidator} from "../validators/user.validator";
@@ -22,5 +23,6 @@ authRouter.put("/update-profile", authMiddleware, updateUser);
 authRouter.put("/change-password",authMiddleware, validate(changePasswordValidator), changePassword);
 authRouter.delete("/delete-profile",authMiddleware, deleteUser);
 authRouter.post("/logout",authMiddleware, logoutUser);
+authRouter.get("/token", authMiddleware, getAccessToken);
 
 export default authRouter;

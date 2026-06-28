@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 h-screen">
+
+    <div class="flex flex-col h-full">
+
+        <!-- HEADER -->
+        <header class="bg-blue-600 text-white px-6 py-4 flex justify-between items-center shadow-md">
+            <h1 class="text-2xl font-bold">Chat App</h1>
+            <button
+                id="logout-btn"
+                class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-lg font-semibold transition"
+            >
+                Logout
+            </button>
+        </header>
+
+        <!-- MAIN -->
+        <div class="flex flex-1 overflow-hidden">
+
+            <!-- LEFT SIDEBAR -->
+            <aside id="sidebar" class="w-72 bg-white border-r flex flex-col">
+
+                <div class="p-4 border-b">
+                    <h2 class="text-lg font-semibold">Rooms</h2>
+                </div>
+
+                <!-- rooms rendered here by JS -->
+                <div
+                    id="room-list"
+                    class="flex-1 overflow-y-auto p-3 space-y-2"
+                >
+                </div>
+
+                <!-- Create Room -->
+                <div class="p-4 border-t">
+                    <button
+                        id="new-room-btn"
+                        class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition"
+                    >
+                        + Add Room
+                    </button>
+                </div>
+
+            </aside>
+
+            <!-- CHAT BODY -->
+            <section class="flex-1 flex flex-col">
+
+                <div
+                    id="chat-header"
+                    class="bg-white px-6 py-4 border-b text-xl font-semibold"
+                >
+                    Select a room to start chatting
+                </div>
+
+                <!-- messages rendered here by JS -->
+                <div
+                    id="messages-area"
+                    class="flex-1 overflow-y-auto p-6 space-y-4 bg-gray-50"
+                >
+                </div>
+
+                <!-- Typing Indicator — hidden by default -->
+                <div
+                    id="typing-indicator"
+                    class="px-6 py-2 text-sm italic text-gray-500 border-t bg-white hidden"
+                >
+                </div>
+
+                <!-- Input Area -->
+                <div class="bg-white border-t p-4 flex gap-3">
+                    <input
+                        id="message-input"
+                        type="text"
+                        placeholder="Type a message..."
+                        class="flex-1 border rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    >
+                    <button
+                        id="send-btn"
+                        class="bg-blue-600 text-white px-6 rounded-lg hover:bg-blue-700 transition"
+                    >
+                        Send
+                    </button>
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="../Logic/config.js"></script>
+     <script src="../Logic/UI.js"></script>
+     <script src="../Logic/Api.js"></script>
+    <script src="../Logic/Messages.js"></script>
+</body>
+</html>
